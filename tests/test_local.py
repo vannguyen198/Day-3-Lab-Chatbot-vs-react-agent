@@ -13,7 +13,7 @@ def test_local_phi3():
     
     print(f"--- Testing Local Provider with Phi-3 ---")
     print(f"Model Path: {model_path}")
-    
+    print(f"LOCAL_MODEL_PATH = {os.getenv('LOCAL_MODEL_PATH')}")
     if not os.path.exists(model_path):
         print(f"❌ Error: Model file not found at {model_path}")
         print("Please download it from Hugging Face and place it in the models/ folder.")
@@ -30,7 +30,7 @@ def test_local_phi3():
             print(chunk, end="", flush=True)
         print("\n\n✅ Local Provider is working correctly!")
         
-    except Exception as e:
+    except (OSError, RuntimeError) as e:
         print(f"\n❌ Error during execution: {e}")
 
 if __name__ == "__main__":
